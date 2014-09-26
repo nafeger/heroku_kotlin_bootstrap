@@ -27,10 +27,13 @@ public class Main extends HttpServlet {
   private void showHome(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     // Energy is compatible with mass (E=mc2)
+	  // Energy is compatible with mass (E=mc2)
     RelativisticModel.select();
-    Amount<Mass> m = Amount.valueOf("12 GeV").to(KILOGRAM);
 
-    resp.getWriter().print("E=mc^2: 12 GeV = " + m);
+    String energy = System.getenv().get("ENERGY");
+
+    Amount<Mass> m = Amount.valueOf(energy).to(KILOGRAM);
+    resp.getWriter().print("E=mc^2: " + energy + " = " + m);
   }
 
   private void showDatabase(HttpServletRequest req, HttpServletResponse resp)
