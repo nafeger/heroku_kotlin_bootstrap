@@ -6,6 +6,11 @@ import org.eclipse.jetty.servlet.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
+import static javax.measure.unit.SI.KILOGRAM;
+import javax.measure.quantity.Mass;
+import org.jscience.physics.model.RelativisticModel;
+import org.jscience.physics.amount.Amount;
+
 
 public class Main extends HttpServlet {
   @Override
@@ -21,7 +26,11 @@ public class Main extends HttpServlet {
 
   private void showHome(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    resp.getWriter().print("Hello from Java!");
+    // Energy is compatible with mass (E=mc2)
+    RelativisticModel.select();
+    Amount<Mass> m = Amount.valueOf("12 GeV").to(KILOGRAM);
+
+    resp.getWriter().print("E=mc^2: 12 GeV = " + m);
   }
 
   private void showDatabase(HttpServletRequest req, HttpServletResponse resp)
