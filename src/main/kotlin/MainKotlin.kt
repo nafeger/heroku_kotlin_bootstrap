@@ -47,8 +47,8 @@ class MainKotlin : HttpServlet() {
         val energy = System.getenv().get("ENERGY");
 
         resp?.getWriter()?.print("energy: "+energy+"...");
-//        val m = Amount.valueOf(energy)?.to(javax.measure.unit.SI.KILOGRAM);
-//        resp?.getWriter()?.print("Kotlin writes: E=mc^2: " + energy + " = " + m);
+        val m = Amount.valueOf(energy)?.to(javax.measure.unit.SI.KILOGRAM);
+        resp?.getWriter()?.print("Kotlin writes: E=mc^2: " + energy + " = " + m);
     }
 
     //    @Override
