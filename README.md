@@ -1,17 +1,37 @@
 # java-getting-started
 
-A barebones Java app, which can easily be deployed to Heroku.  
+A barebones Kotlin app, configured to give you a simple demo of how to get Kotlin running on heroku.
 
-This application support the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
+
+# Source
+
+This application was borrowed from heroku, and ported roughly as closely as possible to Kotlin.
+
+Here's some basic docs oon the source project [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java).
 
 ## Running Locally
 
 Make sure you have Java and Maven installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
 
+set a config value of the envegy calculation
 ```sh
-$ git clone https://github.com/heroku/java-getting-started.git
-$ cd java-getting-started
-$ mvn install
+heroku config:set KEY=ENERGY VALUE=37 GeV
+```
+
+Install the heroku config plugin to set up a local env
+```sh
+heroku plugins:install git://github.com/ddollar/heroku-config.git
+```
+
+[Pull that config](https://devcenter.heroku.com/articles/config-vars) from above into an env file
+```sh
+heroku config:pull --overwrite
+```
+
+```sh
+$ git clone https://github.com/nafeger/kotlin-maven-getting-started.git
+$ cd kotlin-maven-getting-started
+$ mvn clean install
 $ foreman start web
 ```
 

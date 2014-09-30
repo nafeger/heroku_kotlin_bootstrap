@@ -11,7 +11,9 @@ import javax.measure.quantity.Mass;
 import org.jscience.physics.model.RelativisticModel;
 import org.jscience.physics.amount.Amount;
 
-
+/**
+ * This class persists from the existing demo to be ported over to Kotlin
+ */
 public class Main extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
