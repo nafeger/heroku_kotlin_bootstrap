@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -cp target/classes:target/dependency/* Runner
+web:    java $JAVA_OPTS -cp target/classes:target/dependency/* Bootstrap
