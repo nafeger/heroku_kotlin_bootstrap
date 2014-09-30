@@ -1,3 +1,4 @@
+package com.github.nafeger.heroku_kotlin_bootstrap;
 /**
  * This class is used to boostrap the kotlin application. It may not be necessary, but I haven't figured out a way
  * to get kotlin to make a main method java can call directly.
