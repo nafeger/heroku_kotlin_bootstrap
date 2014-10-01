@@ -9,6 +9,14 @@ import javax.measure.unit.SI
 import org.eclipse.jetty.servlet.ServletHolder
 import org.jscience.physics.model.RelativisticModel
 import org.jscience.physics.amount.Amount
+import java.util.regex.Pattern
+import java.net.URI
+import java.sql.Connection
+import java.sql.ResultSet
+import java.sql.DriverManager
+import java.sql.Statement
+import kotlin.jdbc.*;
+//import kotlin.jdbc.JdbcPackage.*;
 
 class MainKotlin : HttpServlet() {
     // Kotlin has a class object where this main method makes more sense, but it's not working for me, so it remains
@@ -45,7 +53,11 @@ class MainKotlin : HttpServlet() {
         if (req == null || resp == null) {
             throw IllegalArgumentException("Request and Response required.");
         }
-        showHome(resp);
+        if (req.getRequestURI()?.endsWith("/db") as Boolean) {
+            showDatabase(resp);
+        } else {
+            showHome(resp);
+        }
     }
 
     /**
@@ -56,13 +68,52 @@ class MainKotlin : HttpServlet() {
         // Energy is compatible with mass (E=mc2)
         RelativisticModel.select();
 
-        val energy : String? = System.getenv().get("ENERGY");
+            // This may mask the fact that you haven't set ENERGY, but it shows the '?:' operator
+        val energy : CharSequence? = System.getenv().get("ENERGY") ?: "74 GeV";
 
             // Here you can see me trusting java not to hose me...
             // One doesn't usually think of these objects are returning nullable
             // objects, but technically they might.
-        resp.getWriter()?.print("energy: "+energy+"...");
-        val m = Amount.valueOf(energy)?.to(SI.KILOGRAM);
-        resp.getWriter()?.print("Kotlin writes: E=mc^2: " + energy + " = " + m);
+        resp.getWriter()?.print("energy: "+energy+"...")
+        val m = Amount.valueOf(energy)?.to(SI.KILOGRAM)
+        resp.getWriter()?.print("Kotlin writes: E=mc^2: " + energy + " = " + m)
+    }
+
+    fun showDatabase(resp: HttpServletResponse) {
+//        try {
+            val connection : Connection = getDbConnection()
+
+//            val stmt : Statement = connection.createStatement()
+//        connection.
+//            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)")
+//            stmt.executeUpdate("INSERT INTO ticks VALUES (now())")
+//            val rs : ResultSet = stmt.executeQuery("SELECT tick FROM ticks")
+
+//            var out = "Hello!\n"
+//            rs.next().to(rs.getTimestamp("tick"))
+//            while (rs.next()) {
+//                out = out.plus("Read from DB: " + rs.getTimestamp("tick") + "\n")
+//            }
+
+//            resp.getWriter()?.print(out);
+//        } catch (Exception e) {
+//            resp.getWriter().print("There was an error: " + e.getMessage());
+//        }
+    }
+
+    fun getDbConnection(): Connection {
+        val dbUrlStr = System.getenv("DATABASE_URL")
+        if (dbUrlStr == null) {
+            throw IllegalArgumentException("DATABASE_URL required")
+        }
+
+        val dbUri : URI = URI(dbUrlStr);
+
+        val userAndPass = dbUri.getUserInfo()?.split(":");
+
+        return kotlin.jdbc.JdbcPackage.getConnection("jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath(),
+                // See the !! here, that means I'm forcing a coercion to a String from a String?, you probably should't do that.
+                userAndPass!!.first(), userAndPass!!.last());
+
     }
 }
