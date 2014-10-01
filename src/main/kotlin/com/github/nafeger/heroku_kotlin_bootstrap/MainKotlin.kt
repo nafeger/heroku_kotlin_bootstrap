@@ -10,6 +10,12 @@ import org.eclipse.jetty.servlet.ServletHolder
 import org.jscience.physics.model.RelativisticModel
 import org.jscience.physics.amount.Amount
 
+/**
+ * Here is the main Servlet, it is just a simple HttpServlet responding to all requests
+ * with an energy calculation.
+ *
+ * TODO: add in the sql demo.
+ */
 class MainKotlin : HttpServlet() {
     // Kotlin has a class object where this main method makes more sense, but it's not working for me, so it remains
     // commented out.
