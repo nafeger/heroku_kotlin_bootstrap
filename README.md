@@ -2,6 +2,9 @@
 
 A barebones Kotlin app, configured to give you a simple demo of how to get Kotlin running on heroku.
 
+# Shortcut
+
+Just click this: [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/nafeger/heroku_kotlin_bootstrap)
 
 # Source
 

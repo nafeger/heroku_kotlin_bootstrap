@@ -1,0 +1,12 @@
+{
+  "name": "Nate's Kotlin Sample App",
+  "description" : "A simple heroku app built using maven, bootstrapped by a java file running a kotlin servlet",
+  "keywords" : [
+    "kotlin"
+  ],
+  "repository" : "https://github.com/nafeger/heroku_kotlin_bootstrap",
+  "success_url" : "/",
+  "env": {
+    "ENERGY" : "23 GeV"
+  }
+}
