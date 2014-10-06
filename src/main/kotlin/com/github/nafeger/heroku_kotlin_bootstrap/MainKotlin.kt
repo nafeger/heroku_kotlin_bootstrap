@@ -21,24 +21,6 @@ class MainKotlin : HttpServlet() {
     // commented out.
 
 //    class object {
-        fun main(args: Array<String>) {
-                // Note: Kotlin doesn't trust java, and rightly so, Java loves it some null
-            val portRequest: String? = System.getenv("PORT")
-            val port: Int
-            if (portRequest == null) {
-                throw IllegalArgumentException("Must specify environment PORT")
-            }
-            port = Integer.parseInt(portRequest as String)
-
-                //Note: 'new' is passe
-            val server = Server(port)
-            val context = ServletContextHandler(ServletContextHandler.SESSIONS)
-            context.setContextPath("/")
-            server.setHandler(context)
-            context.addServlet(ServletHolder(MainKotlin()), "/*")
-            server.start()
-            server.join()
-        }
 //    }
 
     /**

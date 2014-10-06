@@ -8,7 +8,7 @@
     <artifactId>heroku_kotlin_bootstrap</artifactId>
 
     <properties>
-        <kotlin.version>0.1-SNAPSHOT</kotlin.version>
+        <kotlin.version>0.8.679</kotlin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

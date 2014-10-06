@@ -9,6 +9,6 @@ public class Bootstrap {
         // exist in its 'object' so there could be just one of them.
 
 //        MainKotlin.object$.main(args);
-        new MainKotlin().main(args);
+//        new MainKotlin().main(args);
     }
 }
