@@ -4,7 +4,7 @@
   "keywords" : [
     "kotlin"
   ],
-  "repository" : "https://github.com/nafeger/heroku_kotlin_bootstrap#java_bootstrap_kotlin",
+  "repository" : "https://github.com/nafeger/heroku_kotlin_bootstrap",
   "success_url" : "/",
   "env": {
     "ENERGY" : "23 GeV"
